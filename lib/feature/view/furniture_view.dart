@@ -61,24 +61,7 @@ class FurnitureHomePage extends StatelessWidget {
           if (_viewmodel.isLoading) {
             return Center(child: CircularProgressIndicator());
           } else {
-            return GridView.builder(
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2,
-                  mainAxisSpacing: 10,
-                  childAspectRatio: 0.6,
-                  crossAxisSpacing: 10),
-              itemCount: _viewmodel.furniture.length,
-              itemBuilder: (BuildContext context, int index) {
-                return Container(
-                  height: context.dynamicHeight(0.3),
-                  child: Card(
-                      semanticContainer: true,
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(15)),
-                      child: buildColumnCard(context, index)),
-                );
-              },
-            );
+            return productGridView();
           }
         }),
         Container(child: Text(LocaleKeys.mainTabBar_five.tr())),
@@ -87,6 +70,27 @@ class FurnitureHomePage extends StatelessWidget {
         Container(child: Text(LocaleKeys.mainTabBar_five.tr())),
         Container(child: Text(LocaleKeys.mainTabBar_six.tr())),
       ],
+    );
+  }
+
+  GridView productGridView() {
+    return GridView.builder(
+      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: 2,
+          mainAxisSpacing: 10,
+          childAspectRatio: 0.6,
+          crossAxisSpacing: 10),
+      itemCount: _viewmodel.furniture.length,
+      itemBuilder: (BuildContext context, int index) {
+        return Container(
+          height: context.dynamicHeight(0.3),
+          child: Card(
+              semanticContainer: true,
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(15)),
+              child: buildColumnCard(context, index)),
+        );
+      },
     );
   }
 
@@ -112,32 +116,40 @@ class FurnitureHomePage extends StatelessWidget {
             ),
           ],
         ),
-        TextButton(
-          onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => FurniteDetails(
-                  title: _viewmodel.furniture[index].title.toString(),
-                  price: _viewmodel.furniture[index].price.toString(),
-                  description:
-                      _viewmodel.furniture[index].description.toString(),
-                  image: _viewmodel.furniture[index].image.toString(),
-                ),
-              ),
-            );
-          },
-          child: Container(
-            height: context.dynamicHeight(0.05),
-            width: context.dynamicWidth(0.4),
-            decoration: BoxDecoration(
-                borderRadius: context.lowBorderRadius,
-                color: context.appTheme.buttonColor),
-            child: Center(
-                child: Text('Buy Me ', style: context.textTheme.bodyText1)),
-          ),
-        )
+        textdataButton(context, index)
       ],
+    );
+  }
+
+  TextButton textdataButton(BuildContext context, int index) {
+    return TextButton(
+      onPressed: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => FurniteDetails(
+              title: _viewmodel.furniture[index].title.toString(),
+              price: _viewmodel.furniture[index].price.toString(),
+              description: _viewmodel.furniture[index].description.toString(),
+              image: _viewmodel.furniture[index].image.toString(),
+            ),
+          ),
+        );
+      },
+      child: buyContainer(context),
+    );
+  }
+
+  Container buyContainer(BuildContext context) {
+    return Container(
+      height: context.dynamicHeight(0.05),
+      width: context.dynamicWidth(0.4),
+      decoration: BoxDecoration(
+          borderRadius: context.lowBorderRadius,
+          color: context.appTheme.buttonColor),
+      child: Center(
+          child: Text(LocaleKeys.buttomBuy_buy.tr(),
+              style: context.textTheme.bodyText1)),
     );
   }
 
