@@ -66,25 +66,7 @@ class ControlTabBar extends StatelessWidget {
           if (_viewmodel.isLoading) {
             return Center(child: CircularProgressIndicator());
           } else {
-            return GridView.builder(
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2,
-                  mainAxisSpacing: 10,
-                  childAspectRatio: 0.4,
-                  crossAxisSpacing: 10),
-              itemCount: _viewmodel.furniture.length,
-              itemBuilder: (BuildContext context, int index) {
-                return Container(
-                  height: context.dynamicHeight(0.3),
-                  child: Card(
-                    semanticContainer: true,
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(15)),
-                    child: buildProductsettings(context, index),
-                  ),
-                );
-              },
-            );
+            return productGridView();
           }
         }),
         Container(
@@ -107,6 +89,28 @@ class ControlTabBar extends StatelessWidget {
           child: Text(LocaleKeys.mainTabBar_six.tr()),
         ),
       ],
+    );
+  }
+
+  GridView productGridView() {
+    return GridView.builder(
+      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: 2,
+          mainAxisSpacing: 10,
+          childAspectRatio: 0.4,
+          crossAxisSpacing: 10),
+      itemCount: _viewmodel.furniture.length,
+      itemBuilder: (BuildContext context, int index) {
+        return Container(
+          height: context.dynamicHeight(0.3),
+          child: Card(
+            semanticContainer: true,
+            shape:
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+            child: buildProductsettings(context, index),
+          ),
+        );
+      },
     );
   }
 

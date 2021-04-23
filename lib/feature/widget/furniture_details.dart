@@ -23,59 +23,75 @@ class FurniteDetails extends StatelessWidget {
         body: SingleChildScrollView(
           child: Column(
             children: <Widget>[
-              Container(
-                color: colorConst.athensgray,
-                child: Center(
-                  child: Container(
-                    padding: context.paddingLow,
-                    width: context.dynamicWidth(0.5),
-                    child: Image.network(image.toString()),
-                  ),
-                ),
-              ),
-              Container(
-                decoration: BoxDecoration(
-                    color: colorConst.quillgray,
-                    borderRadius: context.normalBorderRadius),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    Padding(
-                      padding: context.paddingNormal,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: <Widget>[
-                          Text(
-                            //title
-                            title.toString(),
-                            style: context.textTheme.headline4,
-                          ),
-                          Padding(
-                            padding: context.paddingLow,
-                            child: colorSelectedRow(),
-                          ),
-                          Text(
-                            //description
-                            description.toString(),
-                            style: context.textTheme.bodyText1,
-                          )
-                        ],
-                      ),
-                    ),
-                    Padding(
-                      // price
-                      padding: context.paddingNormal,
-                      child: Container(
-                        child: Text('\$ ' + price.toString(),
-                            style: context.textTheme.headline6),
-                      ),
-                    )
-                  ],
-                ),
-              ),
+              allProductContainer(colorConst, context),
+              detailsProductContainer(colorConst, context),
             ],
           ),
         ));
+  }
+
+  Container detailsProductContainer(
+      ColorTheme colorConst, BuildContext context) {
+    return Container(
+      decoration: BoxDecoration(
+          color: colorConst.quillgray,
+          borderRadius: context.normalBorderRadius),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          Padding(
+            padding: context.paddingNormal,
+            child: textProductionWidget(context),
+          ),
+          Padding(
+            // price
+            padding: context.paddingNormal,
+            child: priceContainer(context),
+          )
+        ],
+      ),
+    );
+  }
+
+  Container allProductContainer(ColorTheme colorConst, BuildContext context) {
+    return Container(
+      color: colorConst.athensgray,
+      child: Center(
+        child: Container(
+          padding: context.paddingLow,
+          width: context.dynamicWidth(0.5),
+          child: Image.network(image.toString()),
+        ),
+      ),
+    );
+  }
+
+  Column textProductionWidget(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: <Widget>[
+        Text(
+          //title
+          title.toString(),
+          style: context.textTheme.headline4,
+        ),
+        Padding(
+          padding: context.paddingLow,
+          child: colorSelectedRow(),
+        ),
+        Text(
+          //description
+          description.toString(),
+          style: context.textTheme.bodyText1,
+        )
+      ],
+    );
+  }
+
+  Container priceContainer(BuildContext context) {
+    return Container(
+      child: Text('\$ ' + price.toString(), style: context.textTheme.headline6),
+    );
   }
 
   AppBar detailsAppBar(BuildContext context) {
