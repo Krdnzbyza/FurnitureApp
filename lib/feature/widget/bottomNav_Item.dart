@@ -12,9 +12,9 @@ class NavItem extends StatelessWidget {
       children: [
         IconButton(icon: icon, onPressed: () {}),
         Container(
-            height: context.dynamicHeight(0.01),
-            width: context.dynamicWidth(0.2),
-            color: context.appTheme.errorColor)
+          height: context.dynamicHeight(0.01),
+          width: context.dynamicWidth(0.2),
+        )
       ],
     );
   }

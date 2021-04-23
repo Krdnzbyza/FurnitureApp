@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:furnite_app/feature/core/color/color_theme.dart';
 import 'package:kartal/kartal.dart';
 
 import 'bottomNav_Item.dart';
 
 class bottomNavigation extends StatelessWidget {
-  const bottomNavigation({
-    Key? key,
-  }) : super(key: key);
-
+  final colorConst = ColorTheme();
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -15,8 +13,7 @@ class bottomNavigation extends StatelessWidget {
       width: double.infinity,
       padding: context.paddingLow,
       decoration: BoxDecoration(
-          borderRadius: context.highBorderRadius,
-          color: context.appTheme.bottomAppBarColor),
+          borderRadius: context.highBorderRadius, color: colorConst.eastbay),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [

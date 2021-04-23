@@ -1,6 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:furnite_app/core/init/lang/locale_keys.g.dart';
+import 'package:furnite_app/feature/core/color/color_theme.dart';
 import 'package:kartal/kartal.dart';
 
 import '../view/furniture_view.dart';
@@ -15,22 +16,26 @@ class FurniteDetails extends StatelessWidget {
   late final String? image;
   @override
   Widget build(BuildContext context) {
+    final colorConst = ColorTheme();
     return Scaffold(
         bottomNavigationBar: bottomBuy(),
         appBar: detailsAppBar(context),
         body: SingleChildScrollView(
           child: Column(
             children: <Widget>[
-              Center(
-                child: Container(
-                  padding: context.paddingLow,
-                  width: context.dynamicWidth(0.5),
-                  child: Image.network(image.toString()),
+              Container(
+                color: colorConst.athensgray,
+                child: Center(
+                  child: Container(
+                    padding: context.paddingLow,
+                    width: context.dynamicWidth(0.5),
+                    child: Image.network(image.toString()),
+                  ),
                 ),
               ),
               Container(
                 decoration: BoxDecoration(
-                    color: context.appTheme.buttonColor,
+                    color: colorConst.quillgray,
                     borderRadius: context.normalBorderRadius),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
