@@ -1,0 +1,28 @@
+{
+    "appBarMain":{
+        "name":"Beyza Karadeniz",
+        "welcome":"Welcome"
+    },
+    "buttomBuy":{
+      "buy" : "Buy",
+      "color" : "Colors"
+    },
+    "detailsPage":{
+      "name" : "Detail Products"
+    },
+    "searchBar":{
+      "name" : "Search"
+    },
+    "mainTabBar":{
+    "three" : "Sofa",
+    "four" : "Table",
+    "five" : "Lamp",
+    "six" : "Furniture",
+    "buy" : "Buy Me "
+    },
+    "secondTab":{
+     "one" : "Curtain",
+     "two" : "Armchairs"
+    }
+
+}
